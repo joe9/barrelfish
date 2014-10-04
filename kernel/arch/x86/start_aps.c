@@ -34,9 +34,9 @@
 #include <target/x86_32/offsets_target.h>
 
 #ifdef __k1om__
-#define STARTUP_TIMEOUT         0xffffff
+#define STARTUP_TIMEOUT         0xfffffff
 #else
-#define STARTUP_TIMEOUT         0xffffff
+#define STARTUP_TIMEOUT         0xfffffff
 #endif
 /**
  * start_ap and start_ap_end mark the start end the end point of the assembler
