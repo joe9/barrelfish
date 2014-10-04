@@ -1,0 +1,34 @@
+--------------------------------------------------------------------------
+-- Copyright (c) 2007-2009, ETH Zurich.
+-- All rights reserved.
+--
+-- This file is distributed under the terms in the attached LICENSE file.
+-- If you do not find this file, copies can be found by writing to:
+-- ETH Zurich D-INFK, Haldeneggsteig 4, CH-8092 Zurich. Attn: Systems Group.
+--
+-- Hakefile for /usr/init
+--
+--------------------------------------------------------------------------
+
+[ build application { target = "idris_hello",
+  		      cFiles = [ "idris_hello.c", "../idris_rts/idris_main.c" ],
+  		      addIncludes = [ "../idris_rts/"
+                                    ],
+                      omitCFlags =  [ "-Wredundant-decls"
+                                    , "-Wstrict-prototypes"
+                                    , "-Wmissing-prototypes"
+                                    , "-Wold-style-definition"
+                                    , "-Wmissing-declarations"
+                                    , "-Wshadow"
+                                    ],
+                      addCFlags =  [ "-Wno-unused-variable"
+                                    ],
+		      addLibraries = [ "mm"
+                                     , "getopt"
+                                     , "trace"
+                                     , "elf"
+                                     , "idris_rts"
+                                     ],
+		      architectures = allArchitectures
+                    }
+]
