@@ -39,25 +39,30 @@ void fputStr(void* h, char* str) {
 
 int fpoll(void* h)
 {
-    FILE* f = (FILE*)h;
-    fd_set x;
-    struct timeval timeout;
-    timeout.tv_sec = 1;
-    timeout.tv_usec = 0;
-    int fd = fileno(f);
+   putStr("fpoll replaced by a stub on barrelfish");
+   return 0;
+/*     FILE* f = (FILE*)h; */
+/*     fd_set x; */
+/*     struct timeval timeout; */
+/*     timeout.tv_sec = 1; */
+/*     timeout.tv_usec = 0; */
+/*     int fd = fileno(f); */
 
-    FD_ZERO(&x);
-    FD_SET(fd, &x);
+/*     FD_ZERO(&x); */
+/*     FD_SET(fd, &x); */
 
-    int r = select(fd+1, &x, 0, 0, &timeout);
-    return r;
+/*     int r = select(fd+1, &x, 0, 0, &timeout); */
+/*     return r; */
 }
 
 void* do_popen(const char* cmd, const char* mode) {
-    FILE* f = popen(cmd, mode);
-//    int d = fileno(f);
-//    fcntl(d, F_SETFL, O_NONBLOCK);
+    FILE* f = NULL;
+   putStr("do_popen replaced by a stub on barrelfish");
     return f;
+/*     FILE* f = popen(cmd, mode); */
+/* //    int d = fileno(f); */
+/* //    fcntl(d, F_SETFL, O_NONBLOCK); */
+/*     return f; */
 }
 
 int isNull(void* ptr) {
@@ -77,8 +82,10 @@ char* getEnvPair(int i) {
 }
 
 int idris_time() {
-    time_t t = time(NULL);
-    return (int)t;
+   putStr("time replaced by a stub on barrelfish");
+   return (int) 1412450591;
+/*     time_t t = time(NULL); */
+/*     return (int)t; */
 }
 
 void idris_forceGC(void* vm) {
