@@ -121,12 +121,12 @@ make_ftype t@(TypeRef _ _) dn = Just (TN.fromRef t dn)
 -- are polymorphic so that they don't need to know how large the total
 -- load unit is (32 bits? 8 bits?) etc.
 --
-extract_mask :: (Bits a) => Rec -> Integer -> a
-extract_mask f sz = 
-    foldl setBit 0 (enumFromTo (fromInteger $ offset f) 
+extract_mask :: (Num a, Bits a) => Rec -> Integer -> a
+extract_mask f sz =
+    foldl setBit 0 (enumFromTo (fromInteger $ offset f)
                                (fromInteger $ (offset f) + (size f) - 1))
-insert_mask :: (Bits a) => Rec -> Integer -> a
-insert_mask f sz = 
+insert_mask :: (Num a, Bits a) => Rec -> Integer -> a
+insert_mask f sz =
     foldl complementBit (extract_mask f sz) (enumFromTo 0 (fromInteger sz - 1))
 
 extract_shift :: Rec -> Integer

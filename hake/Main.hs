@@ -19,7 +19,7 @@ import System.Directory
 import System.Exit
 import GHC hiding (Target)
 import GHC.Paths ( libdir )
-import DynFlags ( defaultLogAction,
+import DynFlags ( defaultFatalMessager, defaultFlushOut,
                   xopt_set,
                   ExtensionFlag (Opt_DeriveDataTypeable) )
 import Data.Dynamic
@@ -362,8 +362,8 @@ evalHakeFiles o allfiles hakefiles =
         moddirs = [ (opt_installdir o) ./. "hake", 
                     ".", 
                     (opt_bfsourcedir o) ./. "hake" ]
-    in do 
-      defaultErrorHandler defaultLogAction $ do
+    in do
+      defaultErrorHandler defaultFatalMessager defaultFlushOut $ do
          runGhc (Just libdir) $ do
            dflags <- getSessionDynFlags
 	   let dflags1 = foldl xopt_set dflags [ Opt_DeriveDataTypeable ]
